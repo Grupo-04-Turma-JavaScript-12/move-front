@@ -27,9 +27,9 @@ export default function Home() {
         </div>
 
         <div className="flex justify-center">
-          <div className="w-80 h-80 border rounded flex items-center justify-center">
+          <div className="w-96 h-96 flex items-center justify-center">
             <Link to="/">
-              <img src={home} alt="Move+" className="w-50" />
+              <img src={home} alt="Move+" className="w-75" />
             </Link>
           </div>
         </div>
