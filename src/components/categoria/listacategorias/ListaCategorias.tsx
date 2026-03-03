@@ -44,7 +44,7 @@ function ListaCategorias() {
           <div className="flex flex-col gap-8 md:container md:flex-row md:justify-between">
             {!isLoading && categorias.length === 0 && (
               <span className="text-3xl text-center my-8 text-amber-50">
-                Nenhuma Categoria foi encontrado!
+                Nenhuma Categoria foi encontrada!
               </span>
             )}
 
