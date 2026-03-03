@@ -44,6 +44,11 @@ function FormCategoria({ onSuccess, id }: FormCategoriaProps) {
     navigate("/categorias");
   }
 
+  function cancel() {
+    retornar();
+    onSuccess?.();
+  }
+
   async function gerarNovoCategoria(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
@@ -112,8 +117,8 @@ function FormCategoria({ onSuccess, id }: FormCategoriaProps) {
             )}
           </button>
           <button
-            type="submit"
-            onClick={retornar}
+            type="button"
+            onClick={cancel}
             className="rounded disabled:bg-slate-200 bg-red-500 text-white hover:bg-red-800 font-bold w-1/2 mx-auto py-2 flex justify-center transition-all duration-300"
           >
             Cancelar

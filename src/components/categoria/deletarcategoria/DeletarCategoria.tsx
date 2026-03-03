@@ -20,6 +20,11 @@ function DeletarCategoria({ onSuccess, id }: DeletarCategoriaProps) {
     navigate("/categorias");
   }
 
+  function cancel() {
+    retornar();
+    onSuccess?.();
+  }
+
   async function buscarPorId(id: string) {
     try {
       await buscar(`/categorias/${id}`, setCategoria);
@@ -60,7 +65,7 @@ function DeletarCategoria({ onSuccess, id }: DeletarCategoriaProps) {
         <p className="">Deseja deletar a categoria: {categoria.descricao}?</p>
         <div className="flex gap-8">
           <button
-            onClick={retornar}
+            onClick={cancel}
             className="px-6 py-2 rounded-xl bg-white text-black font-semibold hover:bg-gray-300 hover:cursor-pointer transition-all duration-300"
           >
             Não

@@ -1,21 +1,37 @@
 import Popup from "reactjs-popup";
 import FormAluno from "../formaluno/FormAluno";
 
-function ModalCadastrarAluno() {
+interface ModalProps {
+  id?: string;
+  open: boolean;
+  onClose: () => void;
+  atualizarLista: () => void;
+}
+
+function ModalCadastrarAluno({
+  id,
+  open,
+  onClose,
+  atualizarLista,
+}: ModalProps) {
   return (
     <>
-      <button className="px-6 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-800 hover:cursor-pointer transition-all duration-300 flex items-center justify-center">
-        Cadastrar Aluno
-      </button>
-
       <Popup
+        open={open}
+        onClose={onClose}
         modal
         contentStyle={{
           borderRadius: "1rem",
           paddingBottom: "2rem",
         }}
       >
-        <FormAluno />
+        <FormAluno
+          id={id}
+          onSuccess={() => {
+            onClose();
+            atualizarLista();
+          }}
+        />
       </Popup>
     </>
   );

@@ -6,9 +6,13 @@ import DeletarCategoria from "../deletarcategoria/DeletarCategoria";
 
 interface ModalDeletarCategoriaProps {
   id: string;
+  atualizarLista: () => void;
 }
 
-function ModalDeletarCategoria({ id }: ModalDeletarCategoriaProps) {
+function ModalDeletarCategoria({
+  id,
+  atualizarLista,
+}: ModalDeletarCategoriaProps) {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   return (
@@ -34,6 +38,7 @@ function ModalDeletarCategoria({ id }: ModalDeletarCategoriaProps) {
           id={id}
           onSuccess={() => {
             setOpen(false);
+            atualizarLista();
           }}
         />
       </Popup>

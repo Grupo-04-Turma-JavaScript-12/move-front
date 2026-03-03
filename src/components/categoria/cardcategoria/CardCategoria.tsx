@@ -38,7 +38,10 @@ function CardCategoria({ categoria, atualizarLista }: CardCategoriaProps) {
           id={String(categoria.id)} // passa o id para editar
         />
 
-        <ModalDeletarCategoria id={`${categoria.id}`} />
+        <ModalDeletarCategoria
+          atualizarLista={atualizarLista}
+          id={`${categoria.id}`}
+        />
       </div>
     </article>
   );
