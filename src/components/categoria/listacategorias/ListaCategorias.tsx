@@ -15,7 +15,7 @@ function ListaCategorias() {
 
   useEffect(() => {
     buscarCategorias();
-  }, []);
+  }, [categorias.length]);
 
   async function buscarCategorias() {
     try {
@@ -33,35 +33,43 @@ function ListaCategorias() {
 
   return (
     <>
-      <div className="flex justify-center w-full my-8">
-        {isLoading && <SyncLoader color="gray" size={16} />}
-      </div>
+      {isLoading && (
+        <div className="flex justify-center w-full my-8">
+          <SyncLoader color="#312e81" size={32} />
+        </div>
+      )}
+
       <section>
-        <div className="flex flex-col gap-8 items-center bg-black py-10">
+        <div className="flex flex-col gap-8 items-center bg-black py-4">
           <div className="flex flex-col gap-8 md:container md:flex-row md:justify-between">
-            <h1 className="text-amber-50 text-3xl">Lista de Categorias</h1>
-            <Link
-              to={`/cadastrarcategoria`}
-              state={{ backgroundLocation: location }}
-              onClick={() => setOpenCadastrar(true)}
-              className="px-6 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-800 hover:cursor-pointer transition-all duration-300 flex items-center justify-center"
-            >
-              Nova Categoria
-            </Link>
+            {!isLoading && categorias.length === 0 && (
+              <span className="text-3xl text-center my-8 text-amber-50">
+                Nenhuma Categoria foi encontrado!
+              </span>
+            )}
+
+            {categorias.length !== 0 && (
+              <h1 className="text-3xl text-center text-amber-50 pt-6">
+                Lista de Categorias
+              </h1>
+            )}
+            <div className="flex justify-center items-center">
+              <Link
+                to={`/cadastrarcategoria`}
+                state={{ backgroundLocation: location }}
+                onClick={() => setOpenCadastrar(true)}
+                className="px-6 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-800 hover:cursor-pointer transition-all duration-300"
+              >
+                Nova Categoria
+              </Link>
+            </div>
             <ModalCadastrarCategoria
               open={openCadastrar}
               onClose={() => setOpenCadastrar(false)}
               atualizarLista={buscarCategorias}
             />
-
-            {/* <ModalCadastrarCategoria {...categoria} /> */}
           </div>
           <div className="md:border-2 md:border-gray-400 md:rounded-2xl md:p-4 md:flex md:flex-col gap-2">
-            {!isLoading && categorias.length === 0 && (
-              <span className="text-3xl text-center my-8">
-                Nenhuma Categoria foi encontrado!
-              </span>
-            )}
             <div className="text-amber-50 md:grid md:grid-cols-6 md:w-full md:container md:px-4 md:gap-4 hidden">
               <h3>Descrição:</h3>
             </div>
